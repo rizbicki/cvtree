@@ -1,6 +1,4 @@
-
-
-#' Title
+#' CV Tree score
 #'
 #' @param tree an object of the class "phylo" which the function will evaluate
 #' @param chars_test a matrix in which each row name is
@@ -8,6 +6,7 @@
 #' @param root the tip of "tree" that should be used as a root
 #' @param nsim number of Monte Carlo simulations to be used by simmap. Defaults to 10
 #' @param cl Number of cores to be used. Defaults to 1
+#' @param normalize Whether edge lengths should be normalized to have the same value. Defaults to TRUE
 #'
 #' @return A list with two components: mean_score, the estimated predictive score (smaller is better),
 #'  and sd_score, its standard error
@@ -18,12 +17,15 @@
 #' set.seed(0)
 #' my_tree<- ape::rtree(n=26,tip.label=LETTERS)
 #' chars_test <- replicate(2,ape::rTraitDisc(my_tree,rate = 0.5))
-#' cv_tree(my_tree,chars_test,root="A")
-cv_tree <- function(tree,chars_test,root,nsim=10,
-                    cl=1)
+#' cvtree(my_tree,chars_test,root="A")
+cvtree <- function(tree,chars_test,root,nsim=10,
+                    cl=1,normalize=TRUE)
 {
-  # Normalize edge lenghts so that all
-  tree$edge.length <- rep(1,length(tree$edge.length))
+  if(normalize)
+  {
+    # Normalize edge lenghts so that all
+    tree$edge.length <- rep(1,length(tree$edge.length))
+  }
 
   cl <- parallel::makeCluster(cl)
   doParallel::registerDoParallel(cl)
