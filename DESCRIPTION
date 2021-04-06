@@ -15,3 +15,4 @@ Imports:
     foreach,
     doParallel,
     parallel
+RoxygenNote: 7.1.1
