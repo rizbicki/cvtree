@@ -3,7 +3,7 @@ Type: Package
 Title: Predictive Scores for Phylogenetic Trees
 Version: 0.1.0
 Author: Rafael Izbicki, Rafael Stern
-Maintainer: The package maintainer <yourself@somewhere.net>
+Maintainer: Rafael Izbicki <rafaelizbicki@gmail.com>
 Description: Computes a predictive score for phylogenetic trees
 License: MIT
 Encoding: UTF-8
